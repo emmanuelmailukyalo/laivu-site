@@ -1,0 +1,669 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+     <!-- SEO & Social Metadata -->
+  <meta name="description" content="Orech Rock Technologies Ltd — Innovating the future with IT consultancy, digital marketing, branding, and web development solutions.">
+  <meta property="og:title" content="Orech Rock Technologies Ltd">
+  <meta property="og:description" content="We help businesses innovate, scale, and solve unseen challenges with tailored digital solutions.">
+  <meta property="og:image" content="thumbnail.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <title>Orech Rock </title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f1720; /* dark */
+      --panel:#0f1b22;
+      --muted:#9aa6b2;
+      --accent:#fb8500; /* orange */
+      --accent-2:#ff7400; /* blue */
+      --card:#0b1114;
+      --glass: rgba(255,255,255,0.04);
+      --radius:14px;
+      --max-width:1100px;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      color-scheme: dark;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:linear-gradient(180deg, #0f1b22 65%);
+      color:#e6eef3;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+
+    /* NAV */
+    .nav{
+      position:fixed;top:0;left:0;right:0;z-index:60;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:8px 24px;backdrop-filter: blur(6px);
+      background:linear-gradient(180deg, rgba(5,10,12,0.6), rgba(5,10,12,0.2));
+      border-bottom:1px solid rgba(255,255,255,0.03);
+    }
+    .nav .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:36px;height:36px;border-radius:8px;display:inline-grid;place-items:center;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));box-shadow:0 6px 18px rgba(72,165,255,0.08);
+      font-weight:800;color:#021014;font-size:16px
+    }
+    .brand .title{font-weight:700;font-size:14px;letter-spacing:-0.01em; margin-left: -20px;}
+    .nav-links{display:flex;gap:22px;align-items:center}
+    .nav-links a{color:var(--muted);text-decoration:none;font-weight:600;font-size:13px;padding:6px 8px;border-radius:8px}
+    .nav-links a:hover{color:#fff}
+    .cta{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;background:var(--accent);color:#012;box-shadow:0 8px 24px rgba(79,209,197,0.12);font-weight:700;border:none;cursor:pointer;font-size:13px}
+
+    /* Mobile */
+    .hamburger{display:none;background:transparent;border:none;padding:6px;border-radius:8px}
+    .hamburger svg{width:22px;height:22px}
+
+    /* HERO */
+    .hero{
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      padding:120px 20px 80px;
+      position:relative;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(251,133,0,0.25) 0%, transparent 45%),
+        radial-gradient(circle at 80% 70%, rgba(255,116,0,0.2) 0%, transparent 40%),
+        radial-gradient(circle at 60% 20%, rgba(72,165,255,0.15) 0%, transparent 35%),
+        linear-gradient(135deg, #0f1b22 0%, #0a161d 50%, #0f1720 100%);
+      overflow:hidden;
+    }
+    .hero::before{
+      content:'';
+      position:absolute;
+      top:0;left:0;right:0;bottom:0;
+      background-image:
+        linear-gradient(45deg, rgba(255,255,255,0.06) 1px, transparent 1px),
+        linear-gradient(-45deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity:0.6;
+      pointer-events:none;
+      animation: gridMove 8s linear infinite;
+    }
+    .hero::after{
+      content:'';
+      position:absolute;
+      top:-50%;left:-50%;right:-50%;bottom:-50%;
+      background:
+        conic-gradient(from 180deg at 50% 50%, transparent 0deg, rgba(251,133,0,0.15) 60deg, transparent 120deg),
+        conic-gradient(from 0deg at 30% 70%, transparent 0deg, rgba(255,116,0,0.12) 90deg, transparent 180deg),
+        conic-gradient(from 270deg at 70% 30%, transparent 0deg, rgba(72,165,255,0.08) 45deg, transparent 90deg);
+      animation: rotate 8s linear infinite;
+      pointer-events:none;
+    }
+    .hero-inner{
+      max-width:var(--max-width);
+      text-align:center;
+      position:relative;
+      z-index:2;
+    }
+    
+    /* Animated Lines */
+    .hero-inner::before{
+      content:'';
+      position:absolute;
+      top:-100px;left:50%;
+      width:1px;height:80px;
+      background:linear-gradient(to bottom, transparent, rgba(251,133,0,0.8), transparent);
+      animation: lineDown 3s ease-in-out infinite;
+      transform:translateX(-50%);
+    }
+    .hero-inner::after{
+      content:'';
+      position:absolute;
+      bottom:-100px;right:20%;
+      width:60px;height:1px;
+      background:linear-gradient(to right, transparent, rgba(255,116,0,0.7), transparent);
+      animation: lineRight 4s ease-in-out infinite 1s;
+    }
+    .eyebrow{color:var(--muted);font-size:12px;margin-bottom:18px}
+    h1{font-size:56px;line-height:1.02;margin:0;font-weight:800;color:#e9f3f7;letter-spacing:-0.02em}
+    p.lead{margin:18px auto 28px;max-width:760px;color:var(--muted);font-size:18px}
+    .hero-cta{display:flex;gap:14px;justify-content:center}
+    .btn{padding:12px 18px;border-radius:10px;font-weight:700;border:1px solid rgba(255,255,255,0.06);cursor:pointer}
+    .btn-primary{background:var(--accent);color:#012}
+    .btn-ghost{background:transparent;color:var(--muted)}
+
+    /* sections */
+    main{padding-bottom:80px;}
+    .section{max-width:var(--max-width);margin:60px auto;padding:0 20px}
+    .grid{display:grid;gap:18px}
+
+    /* Services */
+    .services-grid{grid-template-columns:repeat(2,1fr)}
+    .card{background:var(--glass);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);display:flex;gap:14px;align-items:flex-start}
+    .icon-wrap{width:56px;height:56px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));}
+    .card h4{margin:0;font-size:16px}
+    .card p{margin:6px 0 0;color:var(--muted);font-size:14px}
+
+    /* Values */
+    .values{display:flex;flex-wrap:wrap;gap:14px}
+    .value{flex:1 1 calc(33% - 16px);min-width:180px;background:var(--card);padding:16px;border-radius:12px;display:flex;gap:12px;align-items:center}
+    .value h5{margin:0;font-size:15px}
+    .value p{margin:6px 0 0;color:var(--muted);font-size:13px}
+
+    /* About */
+    .about-inner{display:flex;gap:28px;align-items:center}
+    .about-text{flex:1}
+    .about-visual {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(72,165,255,0.06), rgba(79,209,197,0.03));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+    /* services styling */
+
+    .card {
+  background: var(--glass);
+  padding: 18px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.03);
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 6px 18px rgba(255, 127, 50, 0.6); ;
+  
+}
+
+/* Icon hover */
+.card .icon-wrap svg path {
+  transition: stroke 0.3s ease, stroke-opacity 0.3s ease;
+}
+
+
+
+    /* Footer */
+    footer{border-top:1px solid rgba(255,255,255,0.03);
+        padding:28px 20px;
+        margin-top:0px;
+    background: #0b1114; }
+    .footer-inner{max-width:var(--max-width);margin:0 auto;display:flex;gap:20px;align-items:center;justify-content:space-between}
+    .socials{display:flex;gap:12px}
+
+    /* Animations */
+    .reveal{opacity:0;transform:translateY(18px);transition:all 600ms cubic-bezier(.2,.9,.2,1)}
+    .reveal.show{opacity:1;transform:none}
+    
+    @keyframes rotate{
+      from{transform:rotate(0deg)}
+      to{transform:rotate(360deg)}
+    }
+    
+    @keyframes gridMove{
+      0%{background-position: 0 0, 0 0}
+      100%{background-position: 40px 40px, -40px 40px}
+    }
+    
+    @keyframes lineDown{
+      0%{transform:translateX(-50%) translateY(-20px);opacity:0}
+      50%{opacity:1}
+      100%{transform:translateX(-50%) translateY(20px);opacity:0}
+    }
+    
+    @keyframes lineRight{
+      0%{transform:translateX(-20px);opacity:0}
+      50%{opacity:1}
+      100%{transform:translateX(20px);opacity:0}
+    }
+    
+    @keyframes pulse{
+      0%, 100%{opacity:0.3}
+      50%{opacity:0.8}
+    }
+
+    /* Responsive */
+    @media (max-width:900px){
+      h1{font-size:40px}
+      .about-inner{flex-direction:column}
+      .about-visual{width:100%;height:180px}
+      .services-grid{grid-template-columns:1fr}
+      .value{flex:1 1 48%}
+      .nav-links{display:none}
+      .hamburger{display:inline-flex}
+    }
+    @media (max-width:520px){
+      h1{font-size:28px}
+      .hero{padding-top:80px}
+      .value{flex:1 1 100%}
+      .footer-inner{flex-direction:column;gap:14px;align-items:flex-start}
+    }
+
+    /* Mobile menu panel */
+    .mobile-panel{position:fixed;inset:0;background:linear-gradient(180deg, rgba(2,6,8,0.9), rgba(2,6,8,0.95));padding:80px 20px;display:none;z-index:70}
+    .mobile-panel.show{display:block}
+    .mobile-panel nav{display:flex;flex-direction:column;gap:18px}
+    .mobile-panel a{color:#e6eef3;text-decoration:none;font-size:18px}
+
+
+    /* trusted by styling */
+
+  .brand-carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .brand-track {
+    display: flex;
+    width: max-content;
+    animation: scroll 40s linear infinite;
+  }
+
+  .brand-logo {
+    height: 50px;
+    margin: 0 40px;
+    filter: brightness(0) invert(1);
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+  }
+
+  .brand-logo:hover {
+    opacity: 1;
+  }
+
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+
+
+
+  </style>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="brand">
+      <div  aria-hidden><img src="ROCK PLAIN-Photoroom.png" alt="Orech Rock Technologies Logo" style="height: 48px;"> </div>
+      <div>
+        <div class="title">Orech Rock Technologies Ltd</div>
+      </div>
+    </div>
+
+    <nav class="nav-links" aria-label="Primary Navigation">
+      <a href="#home">Home</a>
+      <a href="#about">About Us</a>
+      <a href="#services">Services</a>
+      <a href="#values">Values</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div style="display:flex;align-items:center;gap:12px">
+      <button class="cta btn-primary" onclick="scrollToSection('contact')">Get Started</button>
+      <button class="hamburger" aria-label="Open menu" id="hambtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M4 6h16M4 12h16M4 18h16" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile menu -->
+  <div id="mobilePanel" class="mobile-panel" role="dialog" aria-modal="true">
+    <button class="hamburger" id="closeBtn" style="position:absolute;top:20px;right:20px;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 6l12 12M6 18L18 6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    </button>
+    <nav>
+      <a href="#home" onclick="toggleMobile(false)">Home</a>
+      <a href="#about" onclick="toggleMobile(false)">About Us</a>
+      <a href="#services" onclick="toggleMobile(false)">Services</a>
+      <a href="#values" onclick="toggleMobile(false)">Values</a>
+      <a href="#contact" onclick="toggleMobile(false)">Contact</a>
+    </nav>
+  </div>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-inner">
+        <div class="eyebrow reveal">Recognized for innovation & digital excellence</div>
+        <h1 class="reveal">Innovating the Future, <br/>Building Digital Solutions</h1>
+        <p class="lead reveal">Orech Rock Technologies Ltd helps businesses invent and scale with tailored digital solutions — from strategy and design to development and training.</p>
+        <div class="hero-cta reveal">
+          <button class="btn btn-primary" onclick="scrollToSection('contact')">Get Started</button>
+          <button class="btn btn-ghost" onclick="scrollToSection('services')">Our Services</button>
+        </div>
+      </div>
+    </section>
+
+    <section  style="background-color: #09141b; padding: 10px; " class="trusted-brands bg-black py-12">
+  <div class="container mx-auto overflow-hidden">
+    <h2 style="margin-left: 0; padding-left: 140px; text-align: left;" class="text-center text-2xl font-semibold text-white mb-8">Trusted By</h2>
+    <div class="brand-carousel relative w-full overflow-hidden">
+      <div class="brand-track flex items-center animate-scroll">
+        
+        <!-- Logos -->
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Skyscanner_Logo_LockupHorizontal_SkyBlue_RGB.svg/2560px-Skyscanner_Logo_LockupHorizontal_SkyBlue_RGB.svg.png" alt="Skyscanner" class="brand-logo">
+        
+        <img src="https://logomakerr.ai/blog/wp-content/uploads/2025/05/zenbusiness-logo-1024x264.jpg" alt="ZenBusiness" class="brand-logo">
+
+        <img src="https://www.arrow.com/globalecs-media/p2to4ezb/liongard-logo-horz-full-color-rgb.png" alt="Liongard" class="brand-logo">
+
+        <img src="https://brandlogos.net/wp-content/uploads/2022/09/brex-logo_brandlogos.net_vggne.png" alt="Brex" class="brand-logo">
+
+        <img src="https://wp.logos-download.com/wp-content/uploads/2023/02/Fawry_Logo.png?dl" alt="Fawry" class="brand-logo">
+
+        <img src="https://logodownload.org/wp-content/uploads/2019/10/naspers-logo.png" alt="Naspers" class="brand-logo">
+
+        <img src="https://www.safaricom.co.ke/images/SAF-MAIN-LOGO.png" alt="Safaricom" class="brand-logo">
+
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrOU-XqR3sjGZ-0ulx37FaGFG7GRJ-ptL-Lw&s" alt="Zen BS" class="brand-logo">
+
+        <!-- Duplicate logos for smooth infinite loop -->
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Skyscanner_Logo_LockupHorizontal_SkyBlue_RGB.svg/2560px-Skyscanner_Logo_LockupHorizontal_SkyBlue_RGB.svg.png" alt="Skyscanner" class="brand-logo">
+        
+        <img src="https://logomakerr.ai/blog/wp-content/uploads/2025/05/zenbusiness-logo-1024x264.jpg" alt="ZenBusiness" class="brand-logo">
+
+        <img src="https://www.arrow.com/globalecs-media/p2to4ezb/liongard-logo-horz-full-color-rgb.png" alt="Liongard" class="brand-logo">
+
+        <img src="https://brandlogos.net/wp-content/uploads/2022/09/brex-logo_brandlogos.net_vggne.png" alt="Brex" class="brand-logo">
+
+        <img src="https://wp.logos-download.com/wp-content/uploads/2023/02/Fawry_Logo.png?dl" alt="Fawry" class="brand-logo">
+
+        <img src="https://logodownload.org/wp-content/uploads/2019/10/naspers-logo.png" alt="Naspers" class="brand-logo">
+
+        <img src="https://www.safaricom.co.ke/images/SAF-MAIN-LOGO.png" alt="Safaricom" class="brand-logo">
+
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrOU-XqR3sjGZ-0ulx37FaGFG7GRJ-ptL-Lw&s" alt="Zen BS" class="brand-logo">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSPIRING BACKSTORY SECTION .-->
+
+<section id="about" class="section" style="margin-bottom: 100px;margin-top: 150px;">
+  <div class="about-inner">
+    <div class="about-text reveal">
+      <h2 style="margin-top: -80px;">The Inspiring Backstory</h2>
+      <p style="color:var(--muted);max-width:700px;">
+        The name <strong>Orech Rock</strong> means 
+        <span style="color:#FF6A00;"><strong>everlasting rock</strong></span> — 
+        strong, enduring, and unshakable.
+      </p>
+      <p style="color:var(--muted);max-width:700px;">
+        We chose this name because it reflects our belief that 
+        <strong>true innovation</strong> is not just about quick fixes, 
+        but about building solutions that 
+        <span style="color:#FF6A00;"><strong>stand the test of time</strong></span>.
+      </p>
+      <br>
+      <p style="color:var(--muted);max-width:700px;">
+        <strong>Orech Rock Technologies</strong> was founded on the conviction that 
+        <strong>technology</strong> should be sustainable, timeless, and transformative.
+      </p>
+      <p style="color:var(--muted);max-width:700px;">
+        Just as a rock endures through ages, our solutions are designed to last — 
+        <span style="color:#FF6A00;"><strong>empowering companies today, tomorrow, 
+        and far into the future</strong></span>.
+      </p>
+      <br>
+      <p style="color:var(--muted);max-width:700px;">
+        Our name is a reminder of our commitment: 
+        to be the <strong>foundation for innovation</strong> and a 
+        <span style="color:#FF6A00;"><strong>trusted partner</strong></span> 
+        in helping businesses realize possibilities they never thought possible.
+      </p>
+      <br>
+      <div style="width: 80%; height: 2px; background-color: #e7e7e7; margin: 40px auto;"></div>
+      <div style="display:flex;gap:18px;margin-top:18px;flex-wrap:wrap">
+        <div style="min-width:180px">
+          <h4 style="margin:0"></h4>
+          <p style="color:var(--muted);margin:6px 0 0"></p>
+        </div>
+        <div style="min-width:180px">
+          <h4 style="margin:0">Mission</h4>
+          <p style="color:var(--muted);margin:6px 0 0">
+            At <strong>Orech Rock Technologies</strong>, our mission is to go <span style="color:#FF7F32; font-weight:bold;">beyond traditional ICT solutions</span>.  
+            We are driven to <strong>invent</strong> and <strong>innovate sustainable digital solutions</strong> that unlock untapped potential,  
+            empower businesses to scale, and create <span style="color:#FF7F32; font-weight:bold;">lasting value for generations</span>.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="about-visual reveal" aria-hidden>
+      <div>
+        <img src="TECHNOLOGIES LTD.png" 
+             alt="Orech Rock Logo"
+             style="max-width: 220px; width: 100%; height: auto; display: block; margin: 0 auto;">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+    <section id="services" class="section">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-bottom:14px">
+        <h2 class="reveal">Services</h2>
+        <p style="color:var(--muted);margin:0;">From strategy to execution — tailored for your business.</p>
+      </div>
+
+      <div class="grid services-grid">
+  <!-- Custom Software & CRMs -->
+  <div class="card reveal">
+    <div class="icon-wrap" aria-hidden>
+      <!-- code brackets -->
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+        <path d="M9 18l-4-6 4-6" stroke="white" stroke-opacity="0.9" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M15 6l4 6-4 6" stroke="white" stroke-opacity="0.9" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div>
+      <h4>Custom Software & CRMs</h4>
+      <p>We design scalable, secure, and tailored software solutions — from enterprise CRMs to workflow automation tools — built to fit your business processes seamlessly.</p>
+    </div>
+  </div>
+
+  <!-- IT Consultancy -->
+  <div class="card reveal">
+    <div class="icon-wrap" aria-hidden>
+      <!-- laptop/code icon -->
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+        <rect x="2" y="4" width="20" height="12" rx="2" stroke="white" stroke-opacity="0.9" stroke-width="1.4"/>
+        <path d="M2 18h20" stroke="white" stroke-opacity="0.6" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div>
+      <h4>IT Consultancy</h4>
+      <p>Our experts provide strategic IT advisory to optimize infrastructure, enhance cybersecurity, and align technology with your long-term business vision.</p>
+    </div>
+  </div>
+
+  <!-- Startup Funding -->
+  <div class="card reveal">
+    <div class="icon-wrap" aria-hidden>
+      <!-- dollar/finance icon -->
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+        <path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7H14a3.5 3.5 0 010 7H6" stroke="white" stroke-opacity="0.9" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div>
+      <h4>Startup Funding</h4>
+      <p>We support entrepreneurs with funding opportunities, mentorship, and strategic partnerships to help innovative ideas grow into sustainable businesses.</p>
+    </div>
+  </div>
+
+  <!-- Data Research & Market Analysis -->
+  <div class="card reveal">
+    <div class="icon-wrap" aria-hidden>
+      <!-- bar chart icon -->
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+        <path d="M4 21V10M12 21V3M20 21v-6" stroke="white" stroke-opacity="0.9" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div>
+      <h4>Data Research & Market Analysis</h4>
+      <p>We deliver actionable insights through deep data research, competitive benchmarking, and market analysis to empower smarter decision-making.</p>
+    </div>
+  </div>
+</div>
+
+      </div>
+    </section>
+
+<div style="background-color: #0d171d; padding-top: 1px; ">
+
+    <section id="values" class="section">
+      <h2 class="reveal">Our Core Values</h2>
+      <p style="color:var(--muted);max-width:820px;margin-top:8px;">We combine creativity, ethics and long-term thinking to build solutions that matter.</p>
+
+      <div class="values" style="margin-top:18px">
+        <div class="value reveal">
+          <div style="width:44px;height:44px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01))">
+            <!-- lightbulb -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 18h6" stroke="white" stroke-opacity="0.9" stroke-width="1.4" stroke-linecap="round"/><path d="M12 2a6 6 0 00-4 10.9V15a2 2 0 002 2h4a2 2 0 002-2v-2.1A6 6 0 0012 2z" stroke="white" stroke-opacity="0.9" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <h5>Innovation</h5>
+            <p>We constantly seek new ways to solve problems and add value.</p>
+          </div>
+        </div>
+
+        <div class="value reveal">
+          <div style="width:44px;height:44px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01))">
+            <!-- shield -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2l7 4v6a8 8 0 01-7 10 8 8 0 01-7-10V6l7-4z" stroke="white" stroke-opacity="0.9" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <h5>Integrity</h5>
+            <p>We do what we say and respect the trust placed in us.</p>
+          </div>
+        </div>
+
+        <div class="value reveal">
+          <div style="width:44px;height:44px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01))">
+            <!-- users -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M16 11a4 4 0 10-8 0" stroke="white" stroke-opacity="0.9" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 20a8 8 0 0116 0" stroke="white" stroke-opacity="0.9" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <h5>Collaboration</h5>
+            <p>Great results come from working closely with partners and communities.</p>
+          </div>
+        </div>
+
+        <div class="value reveal">
+          <div style="width:44px;height:44px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01))">
+            <!-- star -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 17.3L5.9 20l1-6.2L2 9.7l6.4-.9L12 3.5l3.6 5.3 6.4.9-5 3.9 1 6.2z" stroke="white" stroke-opacity="0.9" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <h5>Excellence</h5>
+            <p>We strive for the highest standards in everything we deliver.</p>
+          </div>
+        </div>
+
+        <div class="value reveal">
+          <div style="width:44px;height:44px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01))">
+            <!-- leaf -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M20 4c-4 4-6 6-12 12S4 20 4 20s1-5 5-9 8-8 11-7z" stroke="white" stroke-opacity="0.9" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <h5>Sustainability</h5>
+            <p>We design with long-term environmental and social impact in mind.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+<br>
+</div>  
+
+    <section id="contact" class="section">
+      <h2 class="reveal">Get in touch</h2>
+      <div style="display:flex;gap:20px;flex-wrap:wrap;margin-top:12px">
+        <div style="flex:1;min-width:260px;" class="reveal">
+          <p style="color:var(--muted);">Ready to start a project or have a quick question? We'd love to hear from you. Send us a message and we'll respond within 24 hours.</p>
+          <p style="margin-top:12px"><strong>Email:</strong> hello@orechrock.io<br><strong>Location:</strong> Nairobi, Kenya</p>
+        </div>
+        <form style="flex:1;min-width:260px;background:var(--card);padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)" class="reveal" onsubmit="event.preventDefault(); alert('Thanks — we\'ll get back to you!')">
+          <label style="display:block;margin-bottom:8px;font-size:13px;color:var(--muted)">Name</label>
+          <input style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit;margin-bottom:10px" required>
+          <label style="display:block;margin-bottom:8px;font-size:13px;color:var(--muted)">Email</label>
+          <input style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit;margin-bottom:10px" required>
+          <label style="display:block;margin-bottom:8px;font-size:13px;color:var(--muted)">Message</label>
+          <textarea style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit;margin-bottom:10px" rows="4" required></textarea>
+          <button class="btn btn-primary" type="submit">Send Message</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div style="font-weight:700">Orech Rock Technologies Ltd</div>
+        <div style="color:var(--muted);font-size:13px;margin-top:6px">&copy; 2025 Orech Rock Technologies Ltd</div>
+      </div>
+
+      <div style="display:flex;gap:30px;align-items:center">
+        <div style="display:flex;gap:12px;">
+          <a href="#home" style="color:var(--muted);text-decoration:none">Home</a>
+          <a href="#services" style="color:var(--muted);text-decoration:none">Services</a>
+          <a href="#contact" style="color:var(--muted);text-decoration:none">Contact</a>
+        </div>
+
+        <div class="socials">
+          <a aria-label="LinkedIn" href="#" style="display:inline-grid;place-items:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 4h4v16H4zM6 3a2 2 0 110 4 2 2 0 010-4zM13 9h3v2.2c.9-1.6 3-1.7 3 1.1V20h-4v-6c0-1.4 0-3-2-3s-2 1.6-2 3V20h-4V9h4z" stroke="white" stroke-opacity="0.9" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a aria-label="Instagram" href="#" style="display:inline-grid;place-items:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="white" stroke-opacity="0.9" stroke-width="0.9"/><path d="M8 12a4 4 0 108 0 4 4 0 00-8 0z" stroke="white" stroke-opacity="0.9" stroke-width="0.9"/></svg></a>
+          <a aria-label="Twitter" href="#" style="display:inline-grid;place-items:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" stroke="white" stroke-opacity="0.9" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scroll
+    function scrollToSection(id){
+      const el=document.getElementById(id);
+      if(!el) return;
+      el.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+
+    // Mobile menu toggles
+    const hambtn=document.getElementById('hambtn');
+    const mobilePanel=document.getElementById('mobilePanel');
+    const closeBtn=document.getElementById('closeBtn');
+    function toggleMobile(show){
+      if(show) mobilePanel.classList.add('show'); else mobilePanel.classList.remove('show');
+    }
+    hambtn.addEventListener('click',()=>toggleMobile(true));
+    closeBtn.addEventListener('click',()=>toggleMobile(false));
+
+    // Intersection observer for reveal animations
+    const observers = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('show');
+          observers.unobserve(entry.target);
+        }
+      })
+    },{threshold:0.12});
+
+    document.querySelectorAll('.reveal').forEach(el=>observers.observe(el));
+
+    // Close mobile panel when clicking links
+    document.querySelectorAll('#mobilePanel a').forEach(a=>a.addEventListener('click',()=>toggleMobile(false)));
+  </script>
+</body>
+</html>

@@ -600,13 +600,20 @@
           <p style="color:var(--muted);">Ready to start a project or have a quick question? We'd love to hear from you. Send us a message and we'll respond within 24 hours.</p>
           <p style="margin-top:12px"><strong>Email:</strong> hello@orechrocktechnologies.com<br><strong>Location:</strong> Nairobi, Kenya</p>
         </div>
-        <form action="https://formspree.io/f/mldwqaew" method="POST" style="flex:1;min-width:260px;background:var(--card);padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)" class="reveal" onsubmit="event.preventDefault(); alert('Thanks — we\'ll get back to you!')">
-          <label style="display:block;margin-bottom:8px;font-size:13px;color:var(--muted)" input type="text" name="name" >Name</label>
-          <input style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit;margin-bottom:10px" required>
-          <label style="display:block;margin-bottom:8px;font-size:13px;color:var(--muted)" input type="email" name="email">Email</label>
-          <input style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit;margin-bottom:10px" required>
-          <label style="display:block;margin-bottom:8px;font-size:13px;color:var(--muted)" name="message" >Message</label>
-          <textarea style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit;margin-bottom:10px" rows="4" required></textarea>
+        <form action="https://formspree.io/f/mldwqaew" method="POST" style="flex:1;min-width:260px;background:var(--card);padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)" class="reveal">
+  
+          <label for="name" style="display:block;margin-bottom:8px;font-size:13px;color:var(--muted)">Name</label>
+          <input id="name" type="text" name="name" 
+            style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit;margin-bottom:10px" required>
+          
+          <label for="email" style="display:block;margin-bottom:8px;font-size:13px;color:var(--muted)">Email</label>
+          <input id="email" type="email" name="email" 
+            style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit;margin-bottom:10px" required>
+          
+          <label for="message" style="display:block;margin-bottom:8px;font-size:13px;color:var(--muted)">Message</label>
+          <textarea id="message" name="message" 
+            style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit;margin-bottom:10px" rows="4" required></textarea>
+          
           <button class="btn btn-primary" type="submit">Send Message</button>
         </form>
       </div>
@@ -626,6 +633,7 @@
           <a href="#home" style="color:var(--muted);text-decoration:none">Home</a>
           <a href="#services" style="color:var(--muted);text-decoration:none">Services</a>
           <a href="#info@orechrocktechnologies.com" style="color:var(--muted);text-decoration:none">Help</a>
+          <div style="color:var(--muted);font-size:13px;margin-top:6px">&copy; @ info@orechrocktechnologies.com</div>
         </div>
 
         <div class="socials">

@@ -600,22 +600,66 @@
           <p style="color:var(--muted);">Ready to start a project or have a quick question? We'd love to hear from you. Send us a message and we'll respond within 24 hours.</p>
           <p style="margin-top:12px"><strong>Email:</strong> hello@orechrocktechnologies.com<br><strong>Location:</strong> Nairobi, Kenya</p>
         </div>
-        <form action="https://formspree.io/f/mldwqaew" method="POST" style="flex:1;min-width:260px;background:var(--card);padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)" class="reveal">
-  
-          <label for="name" style="display:block;margin-bottom:8px;font-size:13px;color:var(--muted)">Name</label>
-          <input id="name" type="text" name="name" 
-            style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit;margin-bottom:10px" required>
-          
-          <label for="email" style="display:block;margin-bottom:8px;font-size:13px;color:var(--muted)">Email</label>
-          <input id="email" type="email" name="email" 
-            style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit;margin-bottom:10px" required>
-          
-          <label for="message" style="display:block;margin-bottom:8px;font-size:13px;color:var(--muted)">Message</label>
-          <textarea id="message" name="message" 
-            style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit;margin-bottom:10px" rows="4" required></textarea>
-          
-          <button class="btn btn-primary" type="submit">Send Message</button>
-        </form>
+        <form id="contact-form" action="https://formspree.io/f/mldwqaew" method="POST" style="flex:1;min-width:260px;background:var(--card);padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)" class="reveal">
+        <label style="display:block;margin-bottom:8px;font-size:13px;color:var(--muted)">Name</label>
+        <input type="text" name="name" required 
+              style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit;margin-bottom:10px">
+
+        <label style="display:block;margin-bottom:8px;font-size:13px;color:var(--muted)">Email</label>
+        <input type="email" name="email" required
+              style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit;margin-bottom:10px">
+
+        <label style="display:block;margin-bottom:8px;font-size:13px;color:var(--muted)">Message</label>
+        <textarea name="message" rows="4" required
+                  style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit;margin-bottom:10px"></textarea>
+
+        <button class="btn btn-primary" type="submit">Send Message</button>
+      <form id="contact-form" action="https://formspree.io/f/mldwqaew" method="POST" style="flex:1;min-width:260px;background:var(--card);padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)" class="reveal">
+        <label style="display:block;margin-bottom:8px;font-size:13px;color:var(--muted)">Name</label>
+        <input type="text" name="name" required 
+              style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit;margin-bottom:10px">
+
+        <label style="display:block;margin-bottom:8px;font-size:13px;color:var(--muted)">Email</label>
+        <input type="email" name="email" required
+              style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit;margin-bottom:10px">
+
+        <label style="display:block;margin-bottom:8px;font-size:13px;color:var(--muted)">Message</label>
+        <textarea name="message" rows="4" required
+                  style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit;margin-bottom:10px"></textarea>
+
+        <button class="btn btn-primary" type="submit">Send Message</button>
+      </form>
+
+      <p id="form-status" style="margin-top:10px;color:lightgreen;"></p>
+
+      <script>
+        const form = document.getElementById("contact-form");
+        const status = document.getElementById("form-status");
+
+        form.addEventListener("submit", async function(e) {
+          e.preventDefault(); // stop default page reload
+
+          const formData = new FormData(form);
+
+          try {
+            const response = await fetch(form.action, {
+              method: form.method,
+              body: formData,
+              headers: { 'Accept': 'application/json' }
+            });
+
+            if (response.ok) {
+              status.textContent = "✅ Thanks — we'll get back to you soon!";
+              form.reset(); // clear inputs
+            } else {
+              status.textContent = "❌ Oops! Something went wrong.";
+            }
+          } catch (err) {
+            status.textContent = "❌ Network error — please try again later.";
+          }
+        });
+      </script>
+
       </div>
     </section>
 

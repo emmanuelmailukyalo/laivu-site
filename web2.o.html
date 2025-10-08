@@ -764,6 +764,25 @@
       color:var(--accent);
     }
 
+    /* Hide the default cursor */
+body {
+  cursor: none;
+}
+
+/* Create a custom circular cursor */
+.cursor {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ff6b35; /* your brand color */
+  border-radius: 50%;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  pointer-events: none; /* so it doesn't block clicks */
+  transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease;
+  z-index: 9999;
+}
+
+
     /* FOOTER */
     footer{
       background:var(--bg-darker);
@@ -949,6 +968,10 @@
   </style>
 </head>
 <body>
+    
+    <div class="cursor"></div>
+    <!-- Your website content -->
+
 
   <!-- NAVIGATION -->
   <header class="nav" id="nav">
@@ -1426,6 +1449,32 @@
         status.style.color = '#ef4444';
       }
     });
+
+    const cursor = document.querySelector('.cursor');
+
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+});
+
+    let mouseX = 0, mouseY = 0;
+let currentX = 0, currentY = 0;
+
+document.addEventListener('mousemove', e => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
+
+function animate() {
+  currentX += (mouseX - currentX) * 0.15;
+  currentY += (mouseY - currentY) * 0.15;
+  cursor.style.left = currentX + 'px';
+  cursor.style.top = currentY + 'px';
+  requestAnimationFrame(animate);
+}
+
+animate();
+
   </script>
 </body>
 </html>

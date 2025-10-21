@@ -1,0 +1,115 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": ["Hi", "Hello", "Hey", "Good day"],
+      "responses": ["Hello! How can I help you today?", "Hi there! What can I do for you?", "Greetings! How can I assist?"]
+    },
+    {
+      "tag": "about_company",
+      "patterns": [
+        "What does Orech Rock Technologies do?",
+        "Tell me about your company.",
+        "What is your business about?"
+      ],
+      "responses": ["Orech Rock Technologies Ltd helps businesses innovate, scale, and solve challenges with tailored digital solutions — from strategy and design to development and training."]
+    },
+    {
+      "tag": "services_overview",
+      "patterns": [
+        "What services do you offer?",
+        "What are your services?",
+        "Can you list your solutions?"
+      ],
+      "responses": ["We offer a range of comprehensive digital solutions including Custom Software & CRMs, IT Consultancy, Startup Funding, Data Research & Market Analysis, Internet of Things (IoT) Solutions, and AI Training & Adoption Support."]
+    },
+    {
+      "tag": "custom_software",
+      "patterns": [
+        "Do you build custom software?",
+        "Tell me about your CRM solutions.",
+        "What kind of software do you develop?"
+      ],
+      "responses": ["Yes, we design scalable, secure, and tailored software solutions — from enterprise CRMs to workflow automation tools — built to fit your business processes seamlessly."]
+    },
+    {
+      "tag": "it_consultancy",
+      "patterns": [
+        "What is IT Consultancy?",
+        "Do you offer IT advisory services?"
+      ],
+      "responses": ["Our experts provide strategic IT advisory to optimize infrastructure, enhance cybersecurity, and align technology with your long-term business vision."]
+    },
+    {
+      "tag": "startup_funding",
+      "patterns": [
+        "Do you provide funding for startups?",
+        "Can you help me get funding for my idea?"
+      ],
+      "responses": ["Yes, we support entrepreneurs with funding opportunities, mentorship, and strategic partnerships to help innovative ideas grow into sustainable businesses."]
+    },
+    {
+      "tag": "iot_solutions",
+      "patterns": [
+        "What IoT solutions do you offer?",
+        "Can you help with the Internet of Things?"
+      ],
+      "responses": ["We help businesses integrate smart devices, create IoT dashboards, and leverage connected systems for automation, monitoring, and smarter operations."]
+    },
+    {
+      "tag": "ai_training",
+      "patterns": [
+        "Do you offer AI training?",
+        "What is AI adoption support?"
+      ],
+      "responses": ["We provide workshops, training, and hands-on support to help teams understand AI tools, implement AI-powered solutions, and adapt workflows for maximum efficiency."]
+    },
+    {
+      "tag": "company_name_meaning",
+      "patterns": [
+        "What does 'Orech Rock' mean?",
+        "Why did you choose that name?",
+        "What is the story behind your company name?"
+      ],
+      "responses": ["The name Orech Rock means 'everlasting rock'. We chose it because it reflects our belief in building strong, enduring, and unshakable solutions that stand the test of time."]
+    },
+    {
+      "tag": "mission",
+      "patterns": [
+        "What is your mission?",
+        "What is the mission of Orech Rock Technologies?"
+      ],
+      "responses": ["Our mission is to invent and innovate sustainable digital solutions that unlock untapped potential, empower businesses to scale, and create lasting value for generations."]
+    },
+    {
+      "tag": "core_values",
+      "patterns": [
+        "What are your core values?",
+        "What principles guide your company?"
+      ],
+      "responses": ["Our core values are Innovation, Integrity, Collaboration, Excellence, Sustainability, Collaboration Without Boundaries, Technological Leadership, and Visionary Thinking."]
+    },
+    {
+      "tag": "contact",
+      "patterns": [
+        "How can I contact you?",
+        "What is your email address?",
+        "How do I get in touch?"
+      ],
+      "responses": ["You can reach us by email at hello@orechrocktechnologies.com or by using the contact form on our website. We'd love to hear from you!"]
+    },
+    {
+      "tag": "location",
+      "patterns": [
+        "Where are you located?",
+        "What is your physical address?"
+      ],
+      "responses": ["We are located in Nairobi, Kenya."]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": ["Thanks", "Thank you", "That's helpful", "Bye"],
+      "responses": ["You're welcome! Feel free to ask if you have more questions.", "Glad I could help!", "Have a great day!"]
+    }
+  ]
+}

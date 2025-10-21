@@ -18,6 +18,320 @@
   <link rel="icon" type="image/x-icon" href="ROCK PLAIN-Photoroom.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
+
+     /* =================================== */
+/* ====== FAQ CHAT AGENT STYLES ====== */
+/* =================================== */
+
+:root {
+  --chat-width: 380px;
+  --chat-height: 600px;
+  --fab-size: 64px;
+}
+
+/* FLOATING ACTION BUTTON (FAB) */
+.chat-fab {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: var(--fab-size);
+  height: var(--fab-size);
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  border-radius: 50%;
+  box-shadow: 0 10px 30px var(--accent-glow);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  z-index: 998;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.chat-fab:hover {
+  transform: scale(1.1) rotate(10deg);
+  box-shadow: 0 15px 40px var(--accent-glow);
+}
+
+.chat-fab .chat-icon {
+  width: 32px;
+  height: 32px;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.chat-fab .close-icon {
+  position: absolute;
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.chat-fab.active .chat-icon {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.chat-fab.active .close-icon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+
+/* CHAT WIDGET CONTAINER */
+.chat-widget-container {
+  position: fixed;
+  bottom: calc(30px + var(--fab-size) + 20px);
+  right: 30px;
+  width: var(--chat-width);
+  max-height: var(--chat-height);
+  background: var(--bg-darker);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 999;
+  
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.chat-widget-container.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+/* WIDGET HEADER */
+.chat-widget-header {
+  padding: 20px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.chat-widget-header h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.chat-widget-header p {
+  font-size: 14px;
+  color: var(--muted);
+  margin: 4px 0 0;
+}
+
+/* MESSAGES AREA */
+.chat-messages {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.chat-messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+  background: rgba(255,107,53,0.3);
+  border-radius: 3px;
+}
+
+.message {
+  display: flex;
+  max-width: 85%;
+  animation: messageFadeIn 0.4s ease forwards;
+}
+
+@keyframes messageFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.message .text {
+  padding: 12px 18px;
+  border-radius: 20px;
+  line-height: 1.5;
+  font-size: 15px;
+}
+
+.message.user {
+  align-self: flex-end;
+}
+
+.message.user .text {
+  background: var(--accent);
+  color: #000;
+  border-bottom-right-radius: 4px;
+}
+
+.message.bot {
+  align-self: flex-start;
+}
+
+.message.bot .text {
+  background: var(--card);
+  color: var(--text-light);
+  border-bottom-left-radius: 4px;
+  border: 1px solid var(--border);
+}
+
+/* TYPING INDICATOR */
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  padding: 12px 18px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  border-bottom-left-radius: 4px;
+  align-self: flex-start;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.typing-indicator.active {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.typing-indicator span {
+  width: 8px;
+  height: 8px;
+  background-color: var(--muted);
+  border-radius: 50%;
+  margin: 0 2px;
+  animation: typing 1.4s infinite;
+}
+
+.typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+.typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typing {
+  0%, 40%, 100% { transform: translateY(0); }
+  20% { transform: translateY(-6px); }
+}
+
+/* QUICK QUESTIONS */
+.quick-questions {
+  padding: 0 20px 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.quick-question {
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  border-radius: 50px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.quick-question:hover {
+  background: rgba(255,107,53,0.1);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* CHAT INPUT AREA */
+.chat-input-area {
+  padding: 20px;
+  background: var(--panel);
+  flex-shrink: 0;
+}
+
+.chat-input-form {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.chat-input {
+  flex-grow: 1;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: #fff;
+  border-radius: 50px;
+  padding: 12px 20px;
+  font-size: 15px;
+  font-family: inherit;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.chat-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-glow);
+}
+
+.send-button {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.send-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 20px var(--accent-glow);
+}
+
+/* BRANDING */
+.chat-branding {
+  text-align: center;
+  padding-top: 12px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.chat-branding a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* RESPONSIVENESS */
+@media (max-width: 768px) {
+  :root {
+    --chat-width: auto;
+    --chat-height: auto;
+  }
+  .chat-widget-container {
+    inset: 0;
+    border-radius: 0;
+    max-height: 100%;
+    bottom: 0;
+    right: 0;
+    transform: translateY(100%);
+  }
+  .chat-widget-container.active {
+    transform: translateY(0);
+  }
+  .chat-fab {
+    bottom: 20px;
+    right: 20px;
+  }
+}    
+
     :root{
       --bg-dark:#000000;
       --bg-darker:#050505;
@@ -969,6 +1283,70 @@ body {
   </style>
 </head>
 <body>
+
+  <!-- =================================== -->
+<!-- ====== FAQ CHAT AGENT MARKUP ====== -->
+<!-- =================================== -->
+
+<!-- Floating Button to Toggle Chat -->
+<div class="chat-fab" id="chat-fab">
+  <!-- Chat Icon -->
+  <svg class="chat-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+  </svg>
+  <!-- Close Icon -->
+  <svg class="close-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
+  </svg>
+</div>
+
+<!-- Chat Widget Container -->
+<div class="chat-widget-container" id="chat-widget">
+  
+  <!-- Header -->
+  <div class="chat-widget-header">
+    <h3>Orech AI Assistant</h3>
+    <p>I'm here to help with your questions.</p>
+  </div>
+  
+  <!-- Messages -->
+  <div class="chat-messages" id="chat-messages">
+    <!-- Messages will be dynamically added here -->
+    <div class="message bot">
+      <div class="text">
+        Hello! I'm the AI assistant for Orech Rock Technologies. How can I help you today?
+      </div>
+    </div>
+  </div>
+  
+  <!-- Typing Indicator -->
+  <div class="typing-indicator" id="typing-indicator">
+    <span></span><span></span><span></span>
+  </div>
+  
+  <!-- Quick Questions -->
+  <div class="quick-questions" id="quick-questions">
+    <button class="quick-question">What services do you offer?</button>
+    <button class="quick-question">What does 'Orech Rock' mean?</button>
+    <button class="quick-question">How can I contact you?</button>
+  </div>
+  
+  <!-- Input Area -->
+  <div class="chat-input-area">
+    <form class="chat-input-form" id="chat-form">
+      <input type="text" id="chat-input" class="chat-input" placeholder="Ask a question..." autocomplete="off">
+      <button type="submit" class="send-button">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2.5">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </button>
+    </form>
+    <div class="chat-branding">
+      Powered by <a href="#" target="_blank">Orech AI</a>
+    </div>
+  </div>
+  
+</div>
     
     <div class="cursor"></div>
     <!-- Your website content -->
@@ -1466,7 +1844,83 @@ document.addEventListener('mousemove', e => {
   mouseY = e.clientY;
 });
 
+/* ========================================= */
+/* ====== FAQ CHAT AGENT INTERACTIONS ====== */
+/* ========================================= */
 
+// --- DOM Element Selection ---
+const chatFab = document.getElementById('chat-fab');
+const chatWidget = document.getElementById('chat-widget');
+const chatForm = document.getElementById('chat-form');
+const chatInput = document.getElementById('chat-input');
+const chatMessages = document.getElementById('chat-messages');
+const quickQuestionsContainer = document.getElementById('quick-questions');
+const typingIndicator = document.getElementById('typing-indicator');
+
+// --- Toggling the Chat Widget ---
+chatFab.addEventListener('click', () => {
+  chatWidget.classList.toggle('active');
+  chatFab.classList.toggle('active');
+  if (chatWidget.classList.contains('active')) {
+    chatInput.focus();
+  }
+});
+
+// --- Function to Add a Message to the Chat ---
+function addMessage(text, sender) {
+  const messageElement = document.createElement('div');
+  messageElement.classList.add('message', sender);
+  
+  const textElement = document.createElement('div');
+  textElement.classList.add('text');
+  textElement.textContent = text;
+  
+  messageElement.appendChild(textElement);
+  chatMessages.appendChild(messageElement);
+  
+  // Scroll to the latest message
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+// --- Function to Simulate Bot Response ---
+function simulateBotResponse(userMessage) {
+  // Show typing indicator
+  typingIndicator.classList.add('active');
+  quickQuestionsContainer.style.display = 'none'; // Hide quick questions
+
+  setTimeout(() => {
+    typingIndicator.classList.remove('active');
+    
+    // This is a placeholder for the actual AI logic
+    const botReply = `This is a simulated response to: "${userMessage}". The real AI logic will be connected later.`;
+    addMessage(botReply, 'bot');
+    
+    // Show quick questions again after response
+    quickQuestionsContainer.style.display = 'flex';
+    
+  }, 1500); // Simulate 1.5 second delay
+}
+
+// --- Handling Form Submission (User sending a message) ---
+chatForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const userMessage = chatInput.value.trim();
+  
+  if (userMessage) {
+    addMessage(userMessage, 'user');
+    chatInput.value = '';
+    simulateBotResponse(userMessage);
+  }
+});
+
+// --- Handling Quick Question Clicks ---
+quickQuestionsContainer.addEventListener('click', (e) => {
+  if (e.target.classList.contains('quick-question')) {
+    const question = e.target.textContent;
+    addMessage(question, 'user');
+    simulateBotResponse(question);
+  }
+});
 
   </script>
 </body>

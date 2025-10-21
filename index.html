@@ -1881,23 +1881,37 @@ function addMessage(text, sender) {
   chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
-// --- Function to Simulate Bot Response ---
-function simulateBotResponse(userMessage) {
-  // Show typing indicator
+// --- NEW: Function to get a response from the AI backend ---
+async function getAIResponse(userMessage) {
+  // Show typing indicator and hide quick questions
   typingIndicator.classList.add('active');
-  quickQuestionsContainer.style.display = 'none'; // Hide quick questions
+  quickQuestionsContainer.style.display = 'none';
 
-  setTimeout(() => {
+  try {
+    // Use the fetch API to send the user's message to our Python server
+    const response = await fetch('https://laivu-site.onrender.com', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ message: userMessage }) // Send message as JSON
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    addMessage(data.response, 'bot');
+
+  } catch (error) {
+    console.error("Error fetching AI response:", error);
+    addMessage("Sorry, I'm having trouble connecting right now. Please try again later.", 'bot');
+  } finally {
+    // Hide typing indicator and show quick questions again
     typingIndicator.classList.remove('active');
-    
-    // This is a placeholder for the actual AI logic
-    const botReply = `This is a simulated response to: "${userMessage}". The real AI logic will be connected later.`;
-    addMessage(botReply, 'bot');
-    
-    // Show quick questions again after response
     quickQuestionsContainer.style.display = 'flex';
-    
-  }, 1500); // Simulate 1.5 second delay
+  }
 }
 
 // --- Handling Form Submission (User sending a message) ---
@@ -1908,7 +1922,7 @@ chatForm.addEventListener('submit', (e) => {
   if (userMessage) {
     addMessage(userMessage, 'user');
     chatInput.value = '';
-    simulateBotResponse(userMessage);
+    getAIResponse(userMessage); // Call the new AI function
   }
 });
 
@@ -1917,7 +1931,7 @@ quickQuestionsContainer.addEventListener('click', (e) => {
   if (e.target.classList.contains('quick-question')) {
     const question = e.target.textContent;
     addMessage(question, 'user');
-    simulateBotResponse(question);
+    getAIResponse(question); // Call the new AI function
   }
 });
 
